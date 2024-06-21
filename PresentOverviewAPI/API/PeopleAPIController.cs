@@ -5,33 +5,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PresentOverviewAPI.Controllers;
+using PresentOverviewAPI.Controllers.Interface;
 using PresentOverviewAPI.Model;
+using PresentOverviewAPI.Services.dbContext;
 
 namespace PresentOverviewAPI.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PeopleController : ControllerBase
+    public class PeopleAPIController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private readonly IPeopleController _peopleController;
 
-        public PeopleController(DatabaseContext context)
+        public PeopleAPIController(IPeopleController peopleController)
         {
-            _context = context;
+            _peopleController = peopleController;
         }
 
         // GET: api/People
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Person>>> GetPersons()
         {
-            return await _context.Persons.ToListAsync();
+            var personList = await _peopleController.GetPersons();
+            return Ok(personList);
         }
 
         // GET: api/People/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Person>> GetPerson(int id)
         {
-            var person = await _context.Persons.FindAsync(id);
+            var person = await _peopleController.GetPerson(id);
 
             if (person == null)
             {
@@ -50,24 +54,14 @@ namespace PresentOverviewAPI.API
             {
                 return BadRequest();
             }
-
-            _context.Entry(person).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _peopleController.PutPerson(id, person);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!PersonExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
+            
 
             return NoContent();
         }
@@ -77,31 +71,25 @@ namespace PresentOverviewAPI.API
         [HttpPost]
         public async Task<ActionResult<Person>> PostPerson(Person person)
         {
-            _context.Persons.Add(person);
-            await _context.SaveChangesAsync();
+            var newPerson = await _peopleController.PostPerson(person);
 
-            return CreatedAtAction(nameof(PostPerson), new { id = person.Id }, person);
+            return newPerson;
         }
 
         // DELETE: api/People/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePerson(int id)
         {
-            var person = await _context.Persons.FindAsync(id);
+            var person = await _peopleController.GetPerson(id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            _context.Persons.Remove(person);
-            await _context.SaveChangesAsync();
+            await _peopleController.DeletePerson(person);
 
             return NoContent();
         }
 
-        private bool PersonExists(int id)
-        {
-            return _context.Persons.Any(e => e.Id == id);
-        }
     }
 }
