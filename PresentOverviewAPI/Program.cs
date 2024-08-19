@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 using PresentOverviewAPI.Controllers.Interface;
 using PresentOverviewAPI.Services.dbContext;
@@ -6,9 +7,8 @@ using PresentOverviewAPI.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseInMemoryDatabase("Database"));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddTransient<IPeopleController, PeopleController>();
 builder.Services.AddControllers();
 

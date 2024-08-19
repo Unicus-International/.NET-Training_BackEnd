@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentOverviewAPI", "PresentOverviewAPI\PresentOverviewAPI.csproj", "{E3EFEA6E-303C-4034-8E58-EAC5D91AA525}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentOverviewAPI", "PresentOverviewAPI\PresentOverviewAPI.csproj", "{E3EFEA6E-303C-4034-8E58-EAC5D91AA525}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{4AF37869-86B2-43AB-96EE-CE18864E89B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTest.csproj", "{4AF37869-86B2-43AB-96EE-CE18864E89B7}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6DB06317-124B-4910-AB1E-07B1B14EADEE}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{ED74837A-E4BA-48B8-9F68-C307D0B07623}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,16 @@ Global
 		{4AF37869-86B2-43AB-96EE-CE18864E89B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AF37869-86B2-43AB-96EE-CE18864E89B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AF37869-86B2-43AB-96EE-CE18864E89B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DB06317-124B-4910-AB1E-07B1B14EADEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DB06317-124B-4910-AB1E-07B1B14EADEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DB06317-124B-4910-AB1E-07B1B14EADEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DB06317-124B-4910-AB1E-07B1B14EADEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED74837A-E4BA-48B8-9F68-C307D0B07623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED74837A-E4BA-48B8-9F68-C307D0B07623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED74837A-E4BA-48B8-9F68-C307D0B07623}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{ED74837A-E4BA-48B8-9F68-C307D0B07623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED74837A-E4BA-48B8-9F68-C307D0B07623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED74837A-E4BA-48B8-9F68-C307D0B07623}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

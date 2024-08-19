@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  presentoverviewapi:
+    image: ${DOCKER_REGISTRY-}presentoverviewapi
+    build:
+      context: .
+      dockerfile: PresentOverviewAPI/Dockerfile
+
+  unittest:
+    image: ${DOCKER_REGISTRY-}unittest
+    build:
+      context: .
+      dockerfile: UnitTest/Dockerfile
+
