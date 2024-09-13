@@ -8,5 +8,11 @@ services:
     build:
       context: .
       dockerfile: PresentOverviewAPI/Dockerfile
+      args:
+        - configuration=Debug
     ports:
       - 5165:5165
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
